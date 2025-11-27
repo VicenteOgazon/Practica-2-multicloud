@@ -4,6 +4,9 @@ from mysql.connector import Error
 
 bp = Blueprint("main", __name__)
 
+def get_container_name():
+   return current_app.config["INSTANCE_NAME"]
+
 # --- Funciones vacías de caché (se sobrescribirán en __init__.py si se usa Redis), me devuelven el error si estoy de entorno dev ---
 def get_cache(key):
     raise ConnectionError("Redis no disponible en este entorno")
@@ -34,7 +37,7 @@ def get_connection():
 # --- Rutas ---
 @bp.route("/", methods=["GET"])
 def index():
-    return render_template("index.html")
+    return render_template("index.html", container_name=get_container_name())
 
 
 @bp.route("/usuarios/json", methods=["GET"])

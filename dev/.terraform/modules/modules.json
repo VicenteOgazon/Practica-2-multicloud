@@ -1,1 +1,1 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"mysql","Source":"../modules/db","Dir":"../modules/db"},{"Key":"network","Source":"../modules/network","Dir":"../modules/network"},{"Key":"web","Source":"../modules/web","Dir":"../modules/web"}]}
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"lb","Source":"../modules/lb","Dir":"../modules/lb"},{"Key":"mysql","Source":"../modules/db","Dir":"../modules/db"},{"Key":"network","Source":"../modules/network","Dir":"../modules/network"},{"Key":"web","Source":"../modules/web","Dir":"../modules/web"}]}

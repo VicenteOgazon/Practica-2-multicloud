@@ -101,3 +101,23 @@ variable "use_local_code" {
   type        = bool
   default     = false
 }
+
+variable "web_replicas" {
+  description = "Número de réplicas del servicio web"
+  type        = number
+  default     = 1
+}
+
+variable "lb_image" {
+  description = "Imagen Docker para la aplicación web"
+  type        = string
+}
+
+variable "lb_container_name" {
+  description = "Nombre del contenedor web"
+  type        = string
+}
+variable "lb_listen_port" {
+  description = "Puerto en el host donde el Load Balancer escucha"
+  type        = number
+}

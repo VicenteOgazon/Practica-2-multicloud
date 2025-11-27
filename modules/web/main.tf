@@ -14,13 +14,15 @@ resource "docker_image" "web" {
 
 # Create a container
 resource "docker_container" "web_container" {
-  image = docker_image.web.image_id
-  name  = var.container_name
 
-  ports {
-    internal = var.internal_port    
-    external = var.external_port
-  }
+  count = var.replicas
+  image = docker_image.web.image_id
+  name  = "${var.container_name}-${count.index}"
+
+  #ports {
+  #  internal = var.internal_port    
+  #  external = var.external_port
+  #}
 
   dynamic "mounts" {
     for_each = var.use_local_code && var.host_path != null && var.container_path != null ? [1] : []
@@ -33,6 +35,7 @@ resource "docker_container" "web_container" {
   }
 
   env = [
+    "INSTANCE_NAME=${var.container_name}-${count.index}",
     "APP_ENV=${var.app_env}",
     "FLASK_APP=__init__:create_app",
     "FLASK_RUN_HOST=0.0.0.0",

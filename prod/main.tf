@@ -20,10 +20,11 @@ module "network" {
 module "web" {
   source = "../modules/web"
 
+  replicas = var.web_replicas
   image = var.app_image
   container_name = var.web_container_name
-  internal_port = var.web_internal_port
-  external_port = var.web_external_port
+  #internal_port = var.web_internal_port
+  #external_port = var.web_external_port
   host_path = var.web_host_path
   container_path = var.web_container_path
   app_env = var.environment
@@ -40,7 +41,7 @@ module "web" {
 
 module "mysql" {
   source = "../modules/db"
-
+  
   image = var.db_image
   container_name = var.db_container_name
   db_name = var.db_name
@@ -60,4 +61,16 @@ module "cache" {
   cache_container_port =  var.cache_internal_port
   cache_host_port =  var.cache_external_port
   network_name = module.network.network_name
+}
+
+module "lb" {
+  source = "../modules/lb"
+
+  image          = var.lb_image
+  container_name = var.lb_container_name
+  listen_port    = var.lb_listen_port                       # puerto host dev
+  network_name   = module.network.network_name
+
+  backends      = module.web.container_names    # ["web-dev-0", "web-dev-1", ...]
+  backend_port  = var.web_internal_port        # puerto interno de las webs
 }

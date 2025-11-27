@@ -8,15 +8,15 @@ variable "container_name" {
   type        = string
 }
 
-variable "internal_port" {
-  type        = number
-  description = "Puerto interno del contenedor de base de datos"
-}
+#variable "internal_port" {
+#  type        = number
+#  description = "Puerto interno del contenedor de base de datos"
+#}
 
-variable "external_port" {
-  type        = number
-  description = "Puerto externo del contenedor de base de datos"
-}
+#variable "external_port" {
+#  type        = number
+#  description = "Puerto externo del contenedor de base de datos"
+#}
 
 variable "app_env" {
   type        = string
@@ -81,4 +81,9 @@ variable "cache_container_name" {
 variable "use_local_code" {
   description = "Indica si se monta el código desde el host"
   type        = bool
+}
+
+variable "replicas" {
+  description = "Número de réplicas del contenedor web"
+  type        = number
 }
