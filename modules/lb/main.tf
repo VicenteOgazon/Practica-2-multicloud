@@ -40,6 +40,14 @@ resource "docker_container" "lb" {
     external = var.listen_port
   }
 
+  healthcheck {
+      test     = ["CMD", "curl", "-f", "http://localhost/lb-health"]
+      interval = "10s"
+      timeout = "5s"
+      retries = 3
+      start_period = "15s"
+  }
+
   networks_advanced {
     name = var.network_name
   }

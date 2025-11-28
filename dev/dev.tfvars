@@ -20,6 +20,6 @@ db_password = "flaskpassdev"
 
 network_name = "dev_network"
 
-lb_image = "nginx:latest"
+lb_image = "nginx:alpine"
 lb_container_name = "dev_lb"
 lb_listen_port = 8080

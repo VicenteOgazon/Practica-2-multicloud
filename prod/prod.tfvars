@@ -22,6 +22,6 @@ cache_container_name = "redis_cache"
 cache_external_port = 6379
 cache_internal_port = 6379
 
-lb_image = "nginx:latest"
+lb_image = "nginx:alpine"
 lb_container_name = "prod_lb"
-lb_listen_port = 80
+lb_listen_port = 8081

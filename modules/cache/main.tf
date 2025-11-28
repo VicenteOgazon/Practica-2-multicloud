@@ -20,6 +20,14 @@ resource "docker_container" "cache_container" {
     "REDIS_PORT=${var.cache_container_port}"
   ]
 
+  healthcheck {
+      test = ["CMD", "redis-cli", "ping"]
+      interval = "10s"
+      timeout = "5s"
+      retries = 3
+      start_period = "15s"
+  }
+
   networks_advanced {
     name = var.network_name
   }

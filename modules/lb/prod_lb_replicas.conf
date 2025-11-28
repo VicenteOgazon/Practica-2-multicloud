@@ -10,4 +10,10 @@ server {
     location / {
         proxy_pass http://backend;
     }
+
+    location = /lb-health {
+        access_log off;
+        return 200 'OK';
+        add_header Content-Type text/plain;
+    }
 }

@@ -23,7 +23,7 @@ module "web" {
   replicas = var.web_replicas
   image = var.app_image
   container_name = var.web_container_name
-  #internal_port = var.web_internal_port
+  internal_port = var.web_internal_port
   #external_port = var.web_external_port
   host_path = var.web_host_path
   container_path = var.web_container_path

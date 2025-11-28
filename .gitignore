@@ -1,8 +1,8 @@
-prod/.terraform/
-dev/.terraform/
+prod/.terraform
+dev/.terraform
 prod/dev.tfvars
 dev/dev.tfvars
 *.tfstate
 *.tfstate.backup
 .terraform.lock.hcl
-app/__pycache__/
+app/__pycache__

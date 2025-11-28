@@ -24,6 +24,16 @@ resource "docker_container" "web_container" {
   #  external = var.external_port
   #}
 
+  restart = "always"
+
+  healthcheck {
+    test     = ["CMD", "curl", "-f", "http://localhost:${var.internal_port}/health"]
+    interval = "10s"
+      timeout = "5s"
+      retries = 3
+      start_period = "15s"
+  }
+
   dynamic "mounts" {
     for_each = var.use_local_code && var.host_path != null && var.container_path != null ? [1] : []
 

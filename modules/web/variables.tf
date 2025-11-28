@@ -8,10 +8,10 @@ variable "container_name" {
   type        = string
 }
 
-#variable "internal_port" {
-#  type        = number
-#  description = "Puerto interno del contenedor de base de datos"
-#}
+variable "internal_port" {
+  type        = number
+  description = "Puerto interno del contenedor de base de datos"
+}
 
 #variable "external_port" {
 #  type        = number

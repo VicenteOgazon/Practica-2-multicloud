@@ -23,6 +23,14 @@ resource "docker_container" "mysql" {
     "MYSQL_PASSWORD=${var.db_password}"
   ]
 
+  healthcheck {
+      test = ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${var.db_root_password}"]
+      interval = "10s"
+      timeout = "5s"
+      retries = 3
+      start_period = "15s"
+  }
+
   volumes {
     volume_name = docker_volume.db_data.name
     container_path = "/var/lib/mysql"

@@ -1,3 +1,4 @@
+import os
 from flask import Blueprint, render_template, request, redirect, jsonify, current_app
 import mysql.connector
 from mysql.connector import Error
@@ -184,3 +185,10 @@ def health():
         status["cache"] = "down"
 
     return jsonify(status)
+
+@bp.route("/crash")
+def crash():
+    
+    os._exit(1)
+    
+    return "This will never be returned"
