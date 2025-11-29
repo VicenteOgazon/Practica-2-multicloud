@@ -1,6 +1,9 @@
 from flask import Flask
 import os
 from .config import DevelopmentConfig, ProductionConfig
+from prometheus_flask_exporter import PrometheusMetrics
+
+metrics = PrometheusMetrics.for_app_factory()
 
 def create_app():
     app = Flask(__name__)
@@ -10,6 +13,8 @@ def create_app():
         app.config.from_object(ProductionConfig)
     else:
         app.config.from_object(DevelopmentConfig)
+
+    metrics.init_app(app)
 
     # Importar blueprint principal
     from . import routes as app_routes

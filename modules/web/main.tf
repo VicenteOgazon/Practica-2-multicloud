@@ -47,8 +47,8 @@ resource "docker_container" "web_container" {
   env = [
     "INSTANCE_NAME=${var.container_name}-${count.index}",
     "APP_ENV=${var.app_env}",
-    "FLASK_APP=__init__:create_app",
-    "FLASK_RUN_HOST=0.0.0.0",
+    #"FLASK_APP=app:create_app",
+    #"FLASK_RUN_HOST=0.0.0.0",
     "FLASK_DEBUG=${var.flask_debug}",
     "MYSQL_HOST=${var.db_container_name}",
     "MYSQL_ROOT_PASSWORD=${var.db_root_pass}",
