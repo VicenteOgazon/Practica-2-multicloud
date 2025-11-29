@@ -13,20 +13,9 @@ variable "internal_port" {
   description = "Puerto interno del contenedor de base de datos"
 }
 
-#variable "external_port" {
-#  type        = number
-#  description = "Puerto externo del contenedor de base de datos"
-#}
-
 variable "app_env" {
   type        = string
   description = "Entorno de la aplicación (development, production, etc.)"
-}
-
-variable "flask_debug" {
-  type = string
-  description = "Modo debug de la aplicacións"
-  default = "0"
 }
 
 variable "db_container_name" {
@@ -61,26 +50,9 @@ variable "network_name" {
   description = "Nombre de la red Docker a la que se conecta la DB"
 }
 
-variable "host_path" {
-  type        = string
-  description = "Ruta en el host donde está la aplicación"
-  default = null
-}
-
-variable "container_path" {
-  type        = string
-  description = "Ruta en el contenedor donde se monta la aplicación"
-  default = null
-}
-
 variable "cache_container_name" {
   type        = string
   description = "Nombre del contenedor de caché"
-}
-
-variable "use_local_code" {
-  description = "Indica si se monta el código desde el host"
-  type        = bool
 }
 
 variable "replicas" {

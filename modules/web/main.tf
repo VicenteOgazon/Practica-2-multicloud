@@ -19,11 +19,6 @@ resource "docker_container" "web_container" {
   image = docker_image.web.image_id
   name  = "${var.container_name}-${count.index}"
 
-  #ports {
-  #  internal = var.internal_port    
-  #  external = var.external_port
-  #}
-
   restart = "always"
 
   healthcheck {
@@ -34,22 +29,10 @@ resource "docker_container" "web_container" {
       start_period = "15s"
   }
 
-  dynamic "mounts" {
-    for_each = var.use_local_code && var.host_path != null && var.container_path != null ? [1] : []
-
-    content {
-      target = var.container_path
-      source = var.host_path
-      type   = "bind"
-    }
-  }
-
   env = [
     "INSTANCE_NAME=${var.container_name}-${count.index}",
     "APP_ENV=${var.app_env}",
-    #"FLASK_APP=app:create_app",
-    #"FLASK_RUN_HOST=0.0.0.0",
-    "FLASK_DEBUG=${var.flask_debug}",
+    "APP_PORT=${var.internal_port}",
     "MYSQL_HOST=${var.db_container_name}",
     "MYSQL_ROOT_PASSWORD=${var.db_root_pass}",
     "MYSQL_DATABASE=${var.db_name}",

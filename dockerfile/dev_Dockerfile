@@ -4,7 +4,6 @@ WORKDIR /app
 
 COPY app ./app
 
-
 COPY dockerfile/dev_requirements.txt ./app
 
 # Instalar curl (necesario para healthcheck)

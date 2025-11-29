@@ -1,12 +1,7 @@
 app_image = "app:dev"
 web_container_name = "dev_web"
 web_internal_port = 5000
-web_external_port = 5005
-web_host_path = "/home/vicente/Escritorio/Grado Ingenieria/4 año/1 Semestre/Redes avanzadas/Practica2/app/"
-web_container_path = "/app/app/"
 environment = "development"
-use_local_code = true
-flask_debug = "1"
 web_replicas = 2
 
 db_image = "mysql:8.0"

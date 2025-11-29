@@ -11,10 +11,8 @@ class Config:
 
 
 class DevelopmentConfig(Config):
-    DEBUG = True
     USE_CACHE = False
 
 
 class ProductionConfig(Config):
-    DEBUG = False
     USE_CACHE = True

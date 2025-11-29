@@ -24,14 +24,9 @@ module "web" {
   image = var.app_image
   container_name = var.web_container_name
   internal_port = var.web_internal_port
-  #external_port = var.web_external_port
-  host_path = var.web_host_path
-  container_path = var.web_container_path
   app_env = var.environment
-  flask_debug = var.flask_debug
   db_container_name = var.db_container_name
   db_root_pass = var.db_root_password
-  use_local_code = var.use_local_code
   db_name = var.db_name
   db_user = var.db_user
   db_password = var.db_password

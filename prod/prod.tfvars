@@ -1,9 +1,7 @@
 app_image = "app:prod"
 web_container_name = "prod_web"
 web_internal_port = 5000
-web_external_port = 5010
 environment = "production"
-use_local_code = false
 web_replicas = 3
 
 db_image = "mysql:8.0"

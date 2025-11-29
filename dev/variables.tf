@@ -9,11 +9,6 @@ variable "web_container_name" {
   type        = string
 }
 
-variable "web_external_port" {
-  description = "Puerto en el host para exponer la web"
-  type        = number
-}
-
 variable "web_internal_port" {
   description = "Puerto interno del contenedor web"
   type        = number
@@ -24,27 +19,9 @@ variable "environment" {
   type        = string
 }
 
-variable "flask_debug" {
-  description = "Modo debug para que recargue automaticamente si se hacen cambios en dev"
-  type = string
-  default = "0"
-}
-
 variable "network_name" {
   description = "Nombre de la red Docker compartida por los servicios"
   type        = string
-}
-
-variable "web_host_path" {
-    description = "Ruta en el host donde está la aplicación"
-    type = string
-    default = null
-}
-
-variable "web_container_path" {
-    description = "Ruta en el contenedor donde se monta la aplicación"
-    type = string
-    default = null
 }
 
 # Base de datos
@@ -94,12 +71,6 @@ variable "cache_container_name" {
   type = string
   description = "Nombre del contenedor de la cache"
   default = " "
-}
-
-variable "use_local_code" {
-  description = "Si true, monta el código desde el host (entorno de desarrollo)"
-  type        = bool
-  default     = false
 }
 
 variable "web_replicas" {
