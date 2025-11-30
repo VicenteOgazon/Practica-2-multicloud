@@ -73,6 +73,12 @@ resource "docker_container" "prometheus" {
     volume_name    = docker_volume.prometheus_data.name
     container_path = "/prometheus"
   }
+
+  volumes {
+    host_path      = "/home/vicente/Escritorio/Grado Ingenieria/4 año/1 Semestre/Redes avanzadas/Practica2/modules/monitoring/alert-rules.yml"
+    container_path = "/etc/prometheus/alert-rules.yml"
+    read_only      = true
+  }
 }
 
 # Contenedor Grafana
