@@ -39,7 +39,6 @@ resource "docker_container" "minio" {
     container_path = "/data"
   }
 
-  # MinIO requiere el comando "server"
   command = [
     "server",
     "/data",

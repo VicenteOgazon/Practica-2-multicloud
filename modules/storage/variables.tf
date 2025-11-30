@@ -1,5 +1,5 @@
 variable "minio_image" {
-  type    = string
+  type = string
 }
 
 variable "minio_container_name" {

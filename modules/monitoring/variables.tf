@@ -1,11 +1,10 @@
 variable "network_name" {
-  description = "Nombre de la red Docker donde están los servicios"
-  type        = string
+  type = string
 }
 
+#variables Prometheus
 variable "prometheus_image" {
-  type    = string
-  default = "prom/prometheus:latest"
+  type = string
 }
 
 variable "prometheus_container_name" {
@@ -13,70 +12,67 @@ variable "prometheus_container_name" {
 }
 
 variable "prometheus_scrape_targets" {
-  description = "Lista de targets host:puerto que Prometheus va a scrapear (dev_web-0:5000, etc.)"
-  type        = list(string)
+  type = list(string)
 }
 
 variable "prometheus_external_port" {
-  type    = number
+  type = number
   default = 9090
 }
 
 variable "prometheus_internal_port" {
-  type    = number
+  type = number
   default = 9090
 }
 
+
+#variables Grafana
 variable "grafana_image" {
-  type    = string
+  type = string
 }
 
 variable "grafana_container_name" {
-  type    = string
+  type = string
 }
 
 variable "grafana_external_port" {
-  type    = number
+  type = number
   default = 3000
 }
 
 variable "grafana_internal_port" {
-  type    = number
+  type = number
   default = 3000
 }
 
 variable "grafana_admin_user" {
-  type    = string
+  type = string
 }
 
 variable "grafana_admin_password" {
-  type    = string
+  type = string
 }
 
+#variables cAdvisor
 variable "cadvisor_container_name" {
-  description = "Nombre del cotnenedor cAdvisor"
   type = string
 }
 
 variable "cadvisor_image" {
-  description = "Imagen de cAdvisor"
   type = string
 }
 
 variable "cadvisor_internal_port" {
-  description = "Puerto interno del contendor cAdvisor"
   type = number
 }
 
 variable "cadvisor_external_port" {
-  description = "Puerto interno del contendor cAdvisor"
   type = number
 }
 
-# Loki
+#variables Loki
 variable "loki_image" {
-  type    = string
-  default = "grafana/loki:2.9.0"
+  type = string
 }
 
 variable "loki_container_name" {
@@ -84,7 +80,7 @@ variable "loki_container_name" {
 }
 
 variable "loki_internal_port" {
-  type    = number
+  type = number
   default = 3100
 }
 
@@ -92,19 +88,20 @@ variable "loki_external_port" {
   type = number
 }
 
-# Promtail
+
+#variables Promtail
 variable "promtail_image" {
-  type    = string
-  default = "grafana/promtail:2.9.0"
+  type = string
 }
 
 variable "promtail_container_name" {
   type = string
 }
 
+
+#variables Alertmanager
 variable "alertmanager_image" {
-  type    = string
-  default = "prom/alertmanager:v0.27.0"
+  type = string
 }
 
 variable "alertmanager_container_name" {
@@ -112,7 +109,7 @@ variable "alertmanager_container_name" {
 }
 
 variable "alertmanager_internal_port" {
-  type    = number
+  type = number
   default = 9093
 }
 

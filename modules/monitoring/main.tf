@@ -50,7 +50,6 @@ resource "docker_volume" "loki_data" {
   name = "${var.loki_container_name}_data"
 }
 
-
 # Contenedor Prometheus
 resource "docker_container" "prometheus" {
   name  = var.prometheus_container_name
@@ -109,7 +108,7 @@ resource "docker_container" "grafana" {
   ]
 }
 
-# Contenedor cAdvisor: métricas de TODOS los contenedores Docker
+# Contenedor cAdvisor
 resource "docker_container" "cadvisor" {
   name  = var.cadvisor_container_name
   image = var.cadvisor_image
@@ -118,7 +117,6 @@ resource "docker_container" "cadvisor" {
     name = var.network_name
   }
 
-  # Si quieres ver cAdvisor en el host: http://localhost:8080
   ports {
     internal = var.cadvisor_internal_port
     external = var.cadvisor_external_port
@@ -158,7 +156,6 @@ resource "docker_container" "loki" {
     name = var.network_name
   }
 
-  # No haría falta exponerlo al host, pero para debug viene bien
   ports {
     internal = var.loki_internal_port
     external = var.loki_external_port
@@ -168,9 +165,6 @@ resource "docker_container" "loki" {
     volume_name    = docker_volume.loki_data.name
     container_path = "/loki"
   }
-
-  # La imagen oficial ya usa /etc/loki/local-config.yaml por defecto
-  # así que no hace falta pasar args de config.
 }
 
 resource "docker_container" "promtail" {
@@ -181,7 +175,6 @@ resource "docker_container" "promtail" {
     name = var.network_name
   }
 
-  # Config generado por Terraform
   volumes {
     host_path      = local_file.promtail_config.filename
     container_path = "/etc/promtail/config.yml"
@@ -200,6 +193,7 @@ resource "docker_container" "promtail" {
   ]
 }
 
+#Contenedor Alertmanager
 resource "docker_container" "alertmanager" {
   name  = var.alertmanager_container_name
   image = var.alertmanager_image

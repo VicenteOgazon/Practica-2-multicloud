@@ -40,21 +40,15 @@ def get_connection():
 def index():
     container_name = get_container_name()
 
-    # Config de MinIO definida en DevelopmentConfig / ProductionConfig
     minio_base = current_app.config.get("MINIO_PUBLIC_URL")
     minio_bucket = current_app.config.get("MINIO_BUCKET")
 
     background_url = None
     if minio_base and minio_bucket:
-        # nombre del fichero que subas a MinIO, por ejemplo background-dev.png
         background_key = "fondo.png"
         background_url = f"{minio_base}/{minio_bucket}/{background_key}"
 
-    return render_template(
-        "index.html",
-        container_name=container_name,
-        background_url=background_url,
-    )
+    return render_template("index.html", container_name=container_name, background_url=background_url,)
 
 
 @bp.route("/usuarios/json", methods=["GET"])

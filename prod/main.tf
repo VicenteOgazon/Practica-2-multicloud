@@ -53,21 +53,21 @@ module "cache" {
 
   image = var.cache_image
   container_name = var.cache_container_name
-  cache_container_port =  var.cache_internal_port
-  cache_host_port =  var.cache_external_port
+  cache_container_port = var.cache_internal_port
+  cache_host_port = var.cache_external_port
   network_name = module.network.network_name
 }
 
 module "lb" {
   source = "../modules/lb"
 
-  image          = var.lb_image
+  image = var.lb_image
   container_name = var.lb_container_name
-  listen_port    = var.lb_listen_port                       # puerto host dev
-  network_name   = module.network.network_name
+  listen_port = var.lb_listen_port
+  network_name = module.network.network_name
 
-  backends      = module.web.container_names    # ["web-dev-0", "web-dev-1", ...]
-  backend_port  = var.web_internal_port        # puerto interno de las webs
+  backends = module.web.container_names
+  backend_port  = var.web_internal_port
 }
 
 module "monitoring" {
@@ -87,7 +87,7 @@ module "monitoring" {
   grafana_container_name = var.grafana_container_name
   grafana_internal_port = var.grafana_internal_port
   grafana_external_port = var.grafana_external_port
-  grafana_admin_user     = var.grafana_admin_user
+  grafana_admin_user = var.grafana_admin_user
   grafana_admin_password = var.grafana_admin_password
 
   cadvisor_image = var.cadvisor_image
@@ -95,18 +95,18 @@ module "monitoring" {
   cadvisor_internal_port = var.cadvisor_internal_port
   cadvisor_external_port = var.cadvisor_external_port
 
-  loki_image           = var.loki_image
+  loki_image = var.loki_image
   loki_container_name  = var.loki_container_name
-  loki_internal_port   = var.loki_internal_port
-  loki_external_port   = var.loki_external_port
+  loki_internal_port = var.loki_internal_port
+  loki_external_port = var.loki_external_port
 
-  promtail_image           = var.promtail_image
-  promtail_container_name  = var.promtail_container_name
+  promtail_image = var.promtail_image
+  promtail_container_name = var.promtail_container_name
 
-  alertmanager_image          = var.alertmanager_image
+  alertmanager_image = var.alertmanager_image
   alertmanager_container_name = var.alertmanager_container_name
-  alertmanager_internal_port  = var.alertmanager_internal_port
-  alertmanager_external_port  = var.alertmanager_external_port
+  alertmanager_internal_port = var.alertmanager_internal_port
+  alertmanager_external_port = var.alertmanager_external_port
 
 
   network_name = module.network.network_name
@@ -115,12 +115,12 @@ module "monitoring" {
 module "storage" {
   source = "../modules/storage"
 
-  minio_image               = var.minio_image
-  minio_container_name      = var.minio_container_name
-  minio_access_key          = var.minio_access_key
-  minio_secret_key          = var.minio_secret_key
-  minio_api_internal_port   = var.minio_api_internal_port
-  minio_api_external_port   = var.minio_api_external_port
+  minio_image = var.minio_image
+  minio_container_name = var.minio_container_name
+  minio_access_key = var.minio_access_key
+  minio_secret_key = var.minio_secret_key
+  minio_api_internal_port = var.minio_api_internal_port
+  minio_api_external_port = var.minio_api_external_port
   minio_console_internal_port = var.minio_console_internal_port
   minio_console_external_port = var.minio_console_external_port
 

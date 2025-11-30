@@ -1,195 +1,165 @@
-# Web
+#variables de la aplicacion web
 variable "app_image" {
-  description = "Imagen Docker para la aplicación web"
-  type        = string
+  type = string
 }
 
 variable "web_container_name" {
-  description = "Nombre del contenedor web"
-  type        = string
+  type = string
 }
 
 variable "web_internal_port" {
-  description = "Puerto interno del contenedor web"
-  type        = number
+  type = number
 }
 
 variable "environment" {
-  description = "Nombre del entorno"
-  type        = string
+  type = string
+}
+variable "web_replicas" {
+  type = number
 }
 
 variable "network_name" {
-  description = "Nombre de la red Docker compartida por los servicios"
-  type        = string
+  type = string
 }
 
-# Base de datos
+
+#variables Base de datos
 variable "db_image" {
-  description = "Imagen Docker para la base de datos"
-  type        = string
+  type = string
 }
 
 variable "db_container_name" {
-  description = "Nombre del contenedor de base de datos"
-  type        = string
+  type = string
 }
 
 variable "db_name" {
-  description = "Nombre de la base de datos"
-  type        = string
+  type = string
 }
 
 variable "db_user" {
-  description = "Usuario de la base de datos"
-  type        = string
+  type = string
 }
 
 variable "db_password" {
-  description = "Password de la base de datos"
-  type        = string
+  type = string
   sensitive   = true
 }
 
 variable "db_root_password" {
-  description = "Password de root de la base de datos (si aplica, ej. MySQL)"
-  type        = string
+  type = string
   sensitive   = true
 }
 
 variable "db_init" {
   description = "Ruta en el host para el script de inicialización de la base de datos"
-  type        = string
+  type = string
 }
 
 variable "volume_name" {
   description = "Nombre del volumen Docker para persistencia de datos"
-  type        = string
+  type = string
 }
 
+#variables Cache Redis
 variable "cache_image" {
   type = string
-  description = "Imagen de Redis para la cache"
   default = null
 }
 
 variable "cache_container_name" {
   type = string
-  description = "Nombre del contenedor de la cache"
   default = " "
 }
 
 variable "cache_external_port" {
   type = number
-  description = "Puerto del host para la cache"
   default = null
 }
 
 variable "cache_internal_port" {
   type = number
-  description = "Puerto del contenedor para la cache"
   default = null
 }
 
-variable "use_local_code" {
-  description = "Si true, monta el código desde el host (entorno de desarrollo)"
-  type        = bool
-  default     = false
-}
 
-variable "web_replicas" {
-  description = "Número de réplicas del servicio web"
-  type        = number
-  default     = 1
-}
-
+#variables Load Balancer
 variable "lb_image" {
-  description = "Imagen Docker para la aplicación web"
-  type        = string
+  type = string
 }
 
 variable "lb_container_name" {
-  description = "Nombre del contenedor web"
   type        = string
 }
 variable "lb_listen_port" {
-  description = "Puerto en el host donde el Load Balancer escucha"
-  type        = number
+  type = number
 }
 
+#variables de Prometheus
 variable "prometheus_image" {
-  description = "Imagen Docker para Prometheus"
-  type        = string
+  type = string
 }
 
 variable "prometheus_container_name" {
-  description = "Nombre del container prometheus"
+  type = string
 }
 
 variable "prometheus_internal_port" {
-  description = "Puerto interno del contenedor Prometheus"
-  type        = number
+  type = number
 }
 
 variable "prometheus_external_port" {
-  description = "Puerto en el host para exponer Prometheus"
-  type        = number
+  type = number
 } 
 
+
+#variables de Grafana
 variable "grafana_image" {
-  description = "Imagen Docker para Grafana"
-  type        = string
+  type = string
 }
 
 variable "grafana_container_name" {
-  description = "Nombre del contenedor Grafana"
-  type        = string
+  type = string
 }
 
 variable "grafana_internal_port" {
-  description = "Puerto interno del contenedor Grafana"
-  type        = number
+  type = number
 }
 
 variable "grafana_external_port" {
-  description = "Puerto en el host para exponer Grafana"
-  type        = number
+  type = number
 }
 
 variable "grafana_admin_password" {
-  description = "Contraseña del usuario admin de Grafana"
-  type        = string
+  type = string
   sensitive   = true
 }
 
 variable "grafana_admin_user" {
-  description = "Usuario admin de Grafana"
-  type        = string
+  type = string
 }
 
+
+#variables de cAdvisor
 variable "cadvisor_container_name" {
-  description = "Nombre del cotnenedor cAdvisor"
   type = string
 }
 
 variable "cadvisor_image" {
-  description = "Imagen de cAdvisor"
   type = string
 }
 
 variable "cadvisor_internal_port" {
-  description = "Puerto interno del contendor cAdvisor"
   type = number
 }
 
 variable "cadvisor_external_port" {
-  description = "Puerto interno del contendor cAdvisor"
   type = number
 }
 
+
+#variables de Loki
 variable "loki_image" {
-  type    = string
-  default = "grafana/loki:2.9.0"
+  type = string
 }
 
 variable "loki_container_name" {
@@ -205,16 +175,20 @@ variable "loki_external_port" {
   type = number
 }
 
+
+#variables de Promtail
 variable "promtail_image" {
-  type    = string
+  type = string
 }
 
 variable "promtail_container_name" {
   type = string
 }
 
+
+#variables de MinIO
 variable "minio_image" {
-  type    = string
+  type = string
 }
 
 variable "minio_container_name" {
@@ -247,9 +221,10 @@ variable "minio_console_external_port" {
   type = number
 }
 
+
+#variables de Alertmanager
 variable "alertmanager_image" {
   type    = string
-  default = "prom/alertmanager:v0.27.0"
 }
 
 variable "alertmanager_container_name" {
