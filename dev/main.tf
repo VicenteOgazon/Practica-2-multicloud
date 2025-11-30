@@ -58,3 +58,39 @@ module "lb" {
   backends      = module.web.container_names    # ["web-dev-0", "web-dev-1", ...]
   backend_port  = var.web_internal_port        # puerto interno de las webs
 }
+
+module "monitoring" {
+  source = "../modules/monitoring"
+
+  prometheus_image = var.prometheus_image
+  prometheus_container_name = var.prometheus_container_name
+  prometheus_internal_port = var.prometheus_internal_port
+  prometheus_external_port = var.prometheus_external_port
+
+  # Targets: cada instancia web de dev
+  prometheus_scrape_targets = [
+    for i in range(var.web_replicas) : "dev_web-${i}:${var.web_internal_port}"
+  ]
+
+  grafana_image = var.grafana_image
+  grafana_container_name = var.grafana_container_name
+  grafana_internal_port = var.grafana_internal_port
+  grafana_external_port = var.grafana_external_port
+  grafana_admin_user     = var.grafana_admin_user
+  grafana_admin_password = var.grafana_admin_password
+
+  cadvisor_image = var.cadvisor_image
+  cadvisor_container_name = var.cadvisor_container_name
+  cadvisor_internal_port = var.cadvisor_internal_port
+  cadvisor_external_port = var.cadvisor_external_port
+
+  loki_image           = var.loki_image
+  loki_container_name  = var.loki_container_name
+  loki_internal_port   = var.loki_internal_port
+  loki_external_port   = var.loki_external_port
+
+  promtail_image          = var.promtail_image
+  promtail_container_name = var.promtail_container_name
+
+  network_name = module.network.network_name
+}

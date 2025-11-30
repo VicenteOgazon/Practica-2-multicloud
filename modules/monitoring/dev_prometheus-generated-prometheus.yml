@@ -6,11 +6,10 @@ scrape_configs:
     metrics_path: "/metrics"
     static_configs:
       - targets:
-%{ for t in scrape_targets ~}
-        - "${t}"
-%{ endfor ~}
+        - "dev_web-0:5000"
+        - "dev_web-1:5000"
   - job_name: "cadvisor"
     metrics_path: "/metrics"
     static_configs:
       - targets:
-        - "${cadvisor_name}:${cadvisor_port}"
+        - "dev_cadvisor:8080"

@@ -116,3 +116,100 @@ variable "lb_listen_port" {
   description = "Puerto en el host donde el Load Balancer escucha"
   type        = number
 }
+
+variable "prometheus_image" {
+  description = "Imagen Docker para Prometheus"
+  type        = string
+}
+
+variable "prometheus_container_name" {
+  description = "Nombre del container prometheus"
+}
+
+variable "prometheus_internal_port" {
+  description = "Puerto interno del contenedor Prometheus"
+  type        = number
+}
+
+variable "prometheus_external_port" {
+  description = "Puerto en el host para exponer Prometheus"
+  type        = number
+} 
+
+variable "grafana_image" {
+  description = "Imagen Docker para Grafana"
+  type        = string
+}
+
+variable "grafana_container_name" {
+  description = "Nombre del contenedor Grafana"
+  type        = string
+}
+
+variable "grafana_internal_port" {
+  description = "Puerto interno del contenedor Grafana"
+  type        = number
+}
+
+variable "grafana_external_port" {
+  description = "Puerto en el host para exponer Grafana"
+  type        = number
+}
+
+variable "grafana_admin_password" {
+  description = "Contraseña del usuario admin de Grafana"
+  type        = string
+  sensitive   = true
+}
+
+variable "grafana_admin_user" {
+  description = "Usuario admin de Grafana"
+  type        = string
+}
+
+variable "cadvisor_container_name" {
+  description = "Nombre del cotnenedor cAdvisor"
+  type = string
+}
+
+variable "cadvisor_image" {
+  description = "Imagen de cAdvisor"
+  type = string
+}
+
+variable "cadvisor_internal_port" {
+  description = "Puerto interno del contendor cAdvisor"
+  type = number
+}
+
+variable "cadvisor_external_port" {
+  description = "Puerto interno del contendor cAdvisor"
+  type = number
+}
+
+variable "loki_image" {
+  type    = string
+  default = "grafana/loki:2.9.0"
+}
+
+variable "loki_container_name" {
+  type = string
+}
+
+variable "loki_internal_port" {
+  type    = number
+  default = 3100
+}
+
+variable "loki_external_port" {
+  type = number
+}
+
+variable "promtail_image" {
+  type    = string
+  default = "grafana/promtail:2.9.0"
+}
+
+variable "promtail_container_name" {
+  type = string
+}
