@@ -13,13 +13,13 @@ Incluye:
 - Monitorización con **Prometheus**, **Grafana**, **cAdvisor**.
 - Logs centralizados con **Loki** + **Promtail**.
 - Alertas al correo electrónico con **Prometheus Alertmanager** en entorno de producción.
-- Almacenamiento de ficheros estáticos compartidos con **MinIO** (S3 compatible).
+- Almacenamiento de ficheros estáticos compartidos con **MinIO**.
 
 ---
 
-## 1. Instalación y ejecución de los entornos
+## Instalación y ejecución de los entornos
 
-### 1.1. Requisitos
+### Requisitos
 
 Antes de comenzar, hay quetener instalados:
 
@@ -186,7 +186,7 @@ Características entorno de producción (Terraform prod):
 │   └── prod.tfvars                # valores concretos de prod
 │
 ├── modules/
-│   ├── web/                       # módulo de instancias web Flask
+│   ├── web/                       # módulo de instancias web
 │   ├── db/                        # módulo MySQL
 │   ├── cache/                     # módulo Redis (prod)
 │   ├── lb/                        # módulo Nginx (balanceador)
@@ -195,7 +195,7 @@ Características entorno de producción (Terraform prod):
 │   └── storage/                   # MinIO
 │
 ├── Makefile                       # comandos para build / despliegue / teardown de dev y prod
-└── README.md                      # guía de instalación, arquitectura y pruebas
+└── README.md                      # guía de instalación, explicación y pruebas
 ```
 
 ---
