@@ -42,61 +42,63 @@ cd Practica-2-multicloud
 
 Construcción de las imágenes de la aplicación web
 
-# Imagen para entorno de desarrollo
+### Imagen para entorno de desarrollo
 ```bash
-docker build -f dockerfile/dev_Dockerfile -t app:dev .
+make build-dev
 ```
-# Imagen para entorno de producción
+### Imagen para entorno de producción
 ```bash
-docker build -f dockerfile/prod_Dockerfile -t app:prod .
+make build-prod
 ```
-Entorno de desarrollo (dev)
+### Inicialización del entorno de desarrollo (dev)
 ```bash
 cd dev
-terraform init
+make init-dev
 ```
-Despliegue
+### Despliegue
 ```bash
-terraform plan -var-file="dev.tfvars"
-terraform apply -var-file="dev.tfvars"
+make plan-dev
+make apply-dev
 ```
 
-Acceso a los servicios
-Aplicación web a través del balanceador:
+#### Acceso a los servicios
+
+Aplicación web a través del balanceador: 
 http://localhost:6060
 
-Panel de Prometheus (dev):
+Panel de Prometheus (dev): 
 http://localhost:9090
 
-Panel de Grafana (dev):
+Panel de Grafana (dev): 
 http://localhost:3000
 
-Consola de MinIO (dev):
+Consola de MinIO (dev): 
 http://localhost:9001
 
-Entorno de producción (prod)
+### Inicialización del entorno de producción (prod)
 ```bash
 cd prod
-terraform init
+make init-prod
 ```
 
-Despliegue
+### Despliegue
 ```bash
-terraform plan -var-file="prod.tfvars"
-terraform apply -var-file="prod.tfvars"
+make plan-prod
+make apply-prod
 ```
 
-Acceso a los servicios
-Aplicación web a través del balanceador:
+### Acceso a los servicios
+
+Aplicación web a través del balanceador: 
 http://localhost:6061
 
-Panel de Prometheus (prod):
+Panel de Prometheus (prod): 
 http://localhost:9091
 
-Panel de Grafana (prod):
+Panel de Grafana (prod): 
 http://localhost:3001
 
-Consola de MinIO (prod):
+Consola de MinIO (prod): 
 http://localhost:19001
 
 ---
@@ -153,7 +155,6 @@ Características entorno de producción (Terraform prod):
 ---
 ## Estructura del proyecto
 ```bash
-.
 ├── app/
 │   ├── __init__.py                # create_app(), carga config por entorno, registra blueprints y métricas
 │   ├── __main__.py                # punto de entrada: python -m app
