@@ -12,7 +12,16 @@ class Config:
 
 class DevelopmentConfig(Config):
     USE_CACHE = False
-
+    
+    MINIO_BUCKET = "static-dev"
+    
+    # URL pública desde el navegador para acceder a MinIO en dev
+    MINIO_PUBLIC_URL = os.getenv("MINIO_PUBLIC_URL", "http://localhost:9000")
 
 class ProductionConfig(Config):
     USE_CACHE = True
+
+    MINIO_BUCKET = "static-prod"
+    
+    # URL pública desde el navegador para acceder a MinIO en prod
+    MINIO_PUBLIC_URL = os.getenv("MINIO_PUBLIC_URL", "http://localhost:19000")

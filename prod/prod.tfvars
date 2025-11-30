@@ -44,7 +44,18 @@ cadvisor_external_port = 8081
 loki_container_name    = "prod_loki"
 loki_image             = "grafana/loki:2.9.0"
 loki_internal_port     = 3100
-loki_external_port     = 3101   # por ejemplo
+loki_external_port     = 3101
 
 promtail_container_name = "prod_promtail"
 promtail_image          = "grafana/promtail:2.9.0"
+
+minio_image = "minio/minio:RELEASE.2024-04-18T19-09-19Z"
+minio_container_name        = "prod_minio"
+minio_access_key            = "prodminio"
+minio_secret_key            = "minioprod"
+minio_api_external_port     = 19000
+minio_console_external_port = 19001
+
+alertmanager_image = "prom/alertmanager:v0.27.0"
+alertmanager_container_name = "prod_alertmanager"
+alertmanager_external_port  = 9094

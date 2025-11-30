@@ -43,3 +43,10 @@ loki_external_port     = 3100
 
 promtail_container_name = "dev_promtail"
 promtail_image          = "grafana/promtail:2.9.0"
+
+minio_image = "minio/minio:RELEASE.2024-04-18T19-09-19Z"
+minio_container_name        = "dev_minio"
+minio_access_key            = "devminio"
+minio_secret_key            = "miniodev"
+minio_api_external_port     = 9000
+minio_console_external_port = 9001

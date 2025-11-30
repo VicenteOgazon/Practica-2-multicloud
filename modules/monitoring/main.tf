@@ -16,6 +16,8 @@ locals {
     scrape_targets = var.prometheus_scrape_targets
     cadvisor_name = var.cadvisor_container_name
     cadvisor_port = var.cadvisor_internal_port
+    alertmanager_host = var.alertmanager_container_name
+    alertmanager_port = var.alertmanager_internal_port
   })
 
   promtail_config = templatefile("${path.module}/promtail-config.yml.tpl", {
@@ -198,3 +200,22 @@ resource "docker_container" "promtail" {
   ]
 }
 
+resource "docker_container" "alertmanager" {
+  name  = var.alertmanager_container_name
+  image = var.alertmanager_image
+
+  networks_advanced {
+    name = var.network_name
+  }
+
+  ports {
+    internal = var.alertmanager_internal_port
+    external = var.alertmanager_external_port
+  }
+
+  volumes {
+    host_path      = "/home/vicente/Escritorio/Grado Ingenieria/4 año/1 Semestre/Redes avanzadas/Practica2/modules/monitoring/alertmanager.yml"
+    container_path = "/etc/alertmanager/alertmanager.yml"
+    read_only      = true
+  }
+}

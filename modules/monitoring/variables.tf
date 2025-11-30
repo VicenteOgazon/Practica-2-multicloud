@@ -101,3 +101,21 @@ variable "promtail_image" {
 variable "promtail_container_name" {
   type = string
 }
+
+variable "alertmanager_image" {
+  type    = string
+  default = "prom/alertmanager:v0.27.0"
+}
+
+variable "alertmanager_container_name" {
+  type = string
+}
+
+variable "alertmanager_internal_port" {
+  type    = number
+  default = 9093
+}
+
+variable "alertmanager_external_port" {
+  type = number
+}

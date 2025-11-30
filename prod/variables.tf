@@ -207,9 +207,60 @@ variable "loki_external_port" {
 
 variable "promtail_image" {
   type    = string
-  default = "grafana/promtail:2.9.0"
 }
 
 variable "promtail_container_name" {
   type = string
+}
+
+variable "minio_image" {
+  type    = string
+}
+
+variable "minio_container_name" {
+  type = string
+}
+
+variable "minio_access_key" {
+  type = string
+}
+
+variable "minio_secret_key" {
+  type = string
+}
+
+variable "minio_api_internal_port" {
+  type    = number
+  default = 9000
+}
+
+variable "minio_api_external_port" {
+  type = number
+}
+
+variable "minio_console_internal_port" {
+  type    = number
+  default = 9001
+}
+
+variable "minio_console_external_port" {
+  type = number
+}
+
+variable "alertmanager_image" {
+  type    = string
+  default = "prom/alertmanager:v0.27.0"
+}
+
+variable "alertmanager_container_name" {
+  type = string
+}
+
+variable "alertmanager_internal_port" {
+  type    = number
+  default = 9093
+}
+
+variable "alertmanager_external_port" {
+  type = number
 }

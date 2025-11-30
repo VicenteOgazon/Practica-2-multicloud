@@ -1,6 +1,12 @@
 global:
   scrape_interval: 15s
 
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - "${alertmanager_host}:${alertmanager_port}"
+
 rule_files:
   - "/etc/prometheus/alert-rules.yml"
 

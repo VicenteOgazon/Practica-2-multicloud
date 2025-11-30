@@ -103,5 +103,26 @@ module "monitoring" {
   promtail_image           = var.promtail_image
   promtail_container_name  = var.promtail_container_name
 
+  alertmanager_image          = var.alertmanager_image
+  alertmanager_container_name = var.alertmanager_container_name
+  alertmanager_internal_port  = var.alertmanager_internal_port
+  alertmanager_external_port  = var.alertmanager_external_port
+
+
+  network_name = module.network.network_name
+}
+
+module "storage" {
+  source = "../modules/storage"
+
+  minio_image               = var.minio_image
+  minio_container_name      = var.minio_container_name
+  minio_access_key          = var.minio_access_key
+  minio_secret_key          = var.minio_secret_key
+  minio_api_internal_port   = var.minio_api_internal_port
+  minio_api_external_port   = var.minio_api_external_port
+  minio_console_internal_port = var.minio_console_internal_port
+  minio_console_external_port = var.minio_console_external_port
+
   network_name = module.network.network_name
 }
